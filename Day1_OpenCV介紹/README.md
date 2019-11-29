@@ -1,18 +1,14 @@
-# 深度學習與電腦視覺
-
-## OpenCV
-
-### 簡介
+### 簡介 | Introduction
 OpenCV (Open source computer Vision) 是電腦視覺領域非常知名的套件，由 Intel 發起從 1999 年年開始主要透過 C++ 程式語⾔言開發的跨平台套件。
 
-### 安裝
+### 安裝 | Installation
 
 > 可以加上 `--user` 參數裝在 User Local
 ```shell=
 pip install opencv-python
 ```
 
-### 顯示圖片
+### 顯示圖片 | Show Image
 > imshow 需要在 Windows 環境底下使用
 
 載入圖片的時候有三種模式
@@ -39,6 +35,26 @@ while True:
     cv2.imshow('bgr', img)
     # 顯示灰圖
     cv2.imshow('gray', img_gray)
+
+    # 直到按下 ESC 鍵才會自動關閉視窗結束程式
+    k = cv2.waitKey(0)
+    if k == 27:
+        cv2.destroyAllWindows()
+        break
+```
+
+#### 圖片合併顯示
+
+```python=
+import cv2
+import numpy as np
+
+# 合併圖片
+img_concat = np.hstack((ImageSrc1, ImageSrc2, ImageSrc3))
+
+while True:
+    # 顯示合併後圖片
+    cv2.imshow('bgr_split', img_concat)
 
     # 直到按下 ESC 鍵才會自動關閉視窗結束程式
     k = cv2.waitKey(0)
