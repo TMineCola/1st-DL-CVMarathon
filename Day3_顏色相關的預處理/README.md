@@ -32,3 +32,10 @@ img_hsv[:, :, 1] = 0 if img_hsv[:, :, 1] / 255 - 0.2 < 0 else img_hsv[:, :, 1] /
     np.clip(計算數據, 最小值, 最大值)
     ```
     - 也可以直接使用 `img = cv2.convertScaleAbs(img, alpha = 數值, beta = 數值)`
+:::info
+- 每個 channel 個別做直方圖均衡
+equalHist_by_channel = [img[..., 0], img[..., 1], img[..., 2]]
+equalHist_by_channel = [cv2.equalizeHist(i) for i in equalHist_by_channel]
+- 組合經過直方圖均衡的每個 channel
+img_bgr_equal = np.stack(equalHist_by_channel, axis=-1)
+:::
